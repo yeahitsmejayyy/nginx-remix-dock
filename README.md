@@ -1,5 +1,5 @@
 # nginx-remix-dock
-A Docker template for a Remix app proxied by NGINX. One process per container, because we play by the rules.
+A Docker template for a Remix app proxied by NGINX. One process per container.
 
 ## Structure
 - `remix-app/` - Remix app basecamp.
