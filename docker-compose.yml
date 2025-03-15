@@ -1,0 +1,18 @@
+services:
+  remix-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.remix
+    ports:
+      - "3000:3000"  # Optional: expose Remix directly for testing
+    environment:
+      - NODE_ENV=production
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - remix-app
