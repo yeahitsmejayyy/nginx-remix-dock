@@ -1,4 +1,4 @@
-# Multi-Container Docker Setup: Nginx + Remix
+# Docker Template: Nginx + Remix
 
 A Docker template for a multi-container setup featuring a Remix app proxied by NGINX.
 
