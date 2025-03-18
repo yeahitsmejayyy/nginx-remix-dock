@@ -1,22 +1,46 @@
-# nginx-remix-dock
-A Docker template for a Remix app proxied by NGINX. One process per container.
+# Multi-Container Docker Setup: Nginx + Remix
+
+A Docker template for a multi-container setup featuring a Remix app proxied by NGINX.
+
+## Overview
+This template provides a clean and scalable setup combining:
+- **Remix** for frontend and API handling.
+- **NGINX** as a reverse proxy.
 
 ## Structure
-- `remix-app/` - Remix app basecamp.
-- `nginx/` - NGINX config, the traffic cop.
-- `Dockerfile.remix` - Remix builder.
-- `Dockerfile.nginx` - NGINX setup.
-- `docker-compose.yml` - The conductor.
-
-## Usage
-1. Remix app in remix-app/? Nice. No? npx create-remix@latest remix-app.
-2. From the root:
-```bash
-docker-compose up --build
+```
+├── remix-app/         # Place your Remix app here
+├── nginx/             # NGINX configuration (reverse proxy)
+│   ├── nginx.conf
+├── Dockerfile.remix   # Remix app container
+├── Dockerfile.nginx   # NGINX container
+├── docker-compose.yml # Service orchestration
+└── README.md
 ```
 
+## Usage
+### 1. Set Up Your Remix App
+Ensure you have a Remix app inside `remix-app/`. If you don’t, create one:
+```sh
+npx create-remix@latest remix-app
+```
+Make sure your app builds successfully before running the containers.
+
+### 2. Build and Run
+```sh
+docker-compose up --build
+```
+- Access Remix app: [http://localhost:3000](http://localhost:3000)
+- Access via NGINX: [http://localhost](http://localhost)
+
+## Configuration
+- **NGINX (Port 80)**: Reverse proxy to Remix (port 3000). Edit `nginx/nginx.conf` as needed.
+- **Remix (Port 3000)**: Ensure your app is correctly set up in `remix-app/`.
+
 ## Notes
-- NGINX runs on 80, proxies to Remix on 3000.
-- Edit `nginx/nginx.conf` if you’re feeling bold.
-- Breaks? Check logs, not my spirit.
+- **Ensure your Remix app builds successfully before running the containers.**
+- **Check logs with** `docker-compose logs <service>` (e.g., `nginx`, `remix-app`).
+- **For debugging**, modify `nginx/nginx.conf` and restart the containers.
+
+Now you're ready to go!
 
